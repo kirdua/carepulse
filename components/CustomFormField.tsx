@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
+import { useState } from 'react'
 // import { E164Number } from 'libphonenumber-js/core'
 import Image from 'next/image'
 // import ReactDatePicker from 'react-datepicker'
 import { Control } from 'react-hook-form'
-// import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import PhoneInput from 'react-phone-number-input'
 
 // import { Checkbox } from './ui/checkbox'
 import {
@@ -43,22 +45,26 @@ interface CustomProps {
 }
 
 const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
-  switch (props.fieldType) {
+  const { fieldType, iconSrc, iconAlt, placeholder, disabled, name, label } =
+    props
+
+  const [value, setValue] = useState()
+  switch (fieldType) {
     case FormFieldType.INPUT:
       return (
         <div className='flex rounded-md border border-dark-500 bg-dark-400'>
-          {props.iconSrc && (
+          {iconSrc && (
             <Image
-              src={props.iconSrc}
+              src={iconSrc}
               height={24}
               width={24}
-              alt={props.iconAlt || 'icon'}
+              alt={iconAlt || 'icon'}
               className='ml-2'
             />
           )}
           <FormControl>
             <Input
-              placeholder={props.placeholder}
+              placeholder={placeholder}
               {...field}
               className='shad-input border-0'
             />
@@ -69,10 +75,10 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <FormControl>
           <Textarea
-            placeholder={props.placeholder}
+            placeholder={placeholder}
             {...field}
             className='shad-textArea'
-            disabled={props.disabled}
+            disabled={disabled}
           />
         </FormControl>
       )
@@ -81,7 +87,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
         <FormControl>
           <PhoneInput
             defaultCountry='US'
-            placeholder={props.placeholder}
+            placeholder={placeholder}
             international
             withCountryCallingCode
             value={field.value as E164Number | undefined}
@@ -95,12 +101,12 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
         <FormControl>
           <div className='flex items-center gap-4'>
             <Checkbox
-              id={props.name}
+              id={name}
               checked={field.value}
               onCheckedChange={field.onChange}
             />
-            <label htmlFor={props.name} className='checkbox-label'>
-              {props.label}
+            <label htmlFor={name} className='checkbox-label'>
+              {label}
             </label>
           </div>
         </FormControl>

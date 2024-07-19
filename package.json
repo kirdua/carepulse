@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "kill -9 $(lsof -ti:3000,3001) && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "kill -9 $(lsof -ti:3000,3001) && next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.1",
+    "react-phone-number-input": "^3.4.3",
     "tailwind-merge": "^2.3.0",
     "zod": "^3.23.8"
   },
