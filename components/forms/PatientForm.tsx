@@ -11,6 +11,7 @@ import CustomFormField from '../CustomFormField'
 import SubmitButton from '../SubmitButton'
 
 import { UserFormValidation } from '@/lib/validation'
+import { createUser } from '@/lib/actions/appointment.actions'
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -51,7 +52,6 @@ const PatientForm = () => {
       const user = await createUser(userData)
 
       if (user) router.push(`/patients/${user.$id}/register`)
-      console.log(userData)
     } catch (error) {
       console.error(error)
     }
