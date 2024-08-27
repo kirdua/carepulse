@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { useState } from 'react'
-// import { E164Number } from 'libphonenumber-js/core'
+import { E164Number } from 'libphonenumber-js/core'
 import Image from 'next/image'
-// import ReactDatePicker from 'react-datepicker'
+import ReactDatePicker from 'react-datepicker'
 import { Control } from 'react-hook-form'
-import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 
-// import { Checkbox } from './ui/checkbox'
+import { Checkbox } from './ui/checkbox'
 import {
   FormControl,
   FormField,
@@ -16,8 +15,9 @@ import {
   FormMessage,
 } from './ui/form'
 import { Input } from './ui/input'
-// import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
-// import { Textarea } from './ui/textarea'
+import { Select, SelectContent, SelectTrigger, SelectValue } from './ui/select'
+import { Textarea } from './ui/textarea'
+import { Familjen_Grotesk } from 'next/font/google'
 
 export enum FormFieldType {
   INPUT = 'input',
@@ -45,8 +45,18 @@ interface CustomProps {
 }
 
 const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
-  const { fieldType, iconSrc, iconAlt, placeholder, disabled, name, label } =
-    props
+  const {
+    fieldType,
+    iconSrc,
+    iconAlt,
+    placeholder,
+    disabled,
+    name,
+    label,
+    showTimeSelect,
+    dateFormat,
+    renderSkeleton,
+  } = props
 
   const [value, setValue] = useState()
   switch (fieldType) {

@@ -4,6 +4,8 @@ import { Plus_Jakarta_Sans as FontSans } from 'next/font/google'
 import { ThemeProvider } from 'next-themes'
 
 import { cn } from '@/lib/utils'
+import 'react-datepicker/dist/react-datepicker.css'
+import 'react-phone-number-input/style.css'
 
 const fontSans = FontSans({
   subsets: ['latin'],
